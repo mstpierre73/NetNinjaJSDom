@@ -1,39 +1,41 @@
-/*var titles = document.getElementsByClassName("title");
+/*Project inspired by The Net Ninja-->
 
-//change HTML collection into array
-var titles = Array.from(titles);
+/*Delete books*/
+const list = document.querySelector("#book-list ul");
+list.addEventListener("click", function(e){
+	if(e.target.className === "delete"){
+		const li = e.target.parentElement;
+		list.removeChild(li);
+	}
+});
 
-titles.forEach(function(item){
-	console.log(item)
-})*/
+/*Adding books*/
+const addForm = document.forms["add-book"];
+addForm.addEventListener("submit", function(e){
+	e.preventDefault();
+	const value = addForm.querySelector("input[type='text']").value;
+	
+	/*create elements*/
+	const newli = document.createElement("li");
+	const bookName = document.createElement("span");
+	const deletebtn = document.createElement("span");
 
-const books = document.querySelectorAll("#book-list li .name");
+	/*add content */
+	deletebtn.textContent = "delete";
+	bookName.textContent = value;
 
-//return a node list, who is already an array
-books.forEach(function(book){
-	book.textContent += "(book title)";
-})
+	/*append to the DOM*/
+	newli.appendChild(bookName);
+	newli.appendChild(deletebtn);
+	list.appendChild(newli);
+
+	
+	/*Style the new element*/
+	const lastLi = document.querySelector("li:last-child");
+	bookName.classList.add("name");
+	deletebtn.classList.add("delete");
+});
 
 
-const booklist = document.querySelector("#book-list");
-console.log(booklist.innerHTML);
-console.log("My next sibling is ", booklist.nextSibling);
-console.log("My next Element sibling is ", booklist.nextElementSibling);
-console.log("My previous sibling is ", booklist.previousSibling);
-console.log("My previous Element sibling is ", booklist.previousElementSibling);
-
-booklist.previousElementSibling.querySelector("p").innerHTML += "<br/>Too Cool for everyone else!";
-
-
-const banner = document.querySelector("#page-banner");
-console.log(banner.nodeType);
-console.log(banner.nodeName);
-console.log(banner.hasChildNodes());
-
-const cloneBanner = banner.cloneNode(true);
-console.log(cloneBanner);
-console.log(banner.parentNode);
-console.log(banner.childNodes);
-console.log(banner.children);
 
 
